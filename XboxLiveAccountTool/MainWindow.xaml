@@ -1,0 +1,601 @@
+<Window
+	x:Class="XboxLiveAccountTool.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:xboxliveaccounttool="clr-namespace:XboxLiveAccountTool" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="Flash Turbo"
+	Height="400"
+	Width="400"
+	WindowStartupLocation="CenterScreen"
+	ResizeMode="NoResize">
+	<Grid
+		Name="RootGrid">
+		<Grid.RowDefinitions>
+			<RowDefinition
+				Height="183*" />
+			<RowDefinition
+				Height="7*" />
+			<RowDefinition
+				Height="59*" />
+		</Grid.RowDefinitions>
+		<TabControl
+			Name="Tabses"
+			VerticalAlignment="Stretch"
+			HorizontalAlignment="Stretch"
+			Margin="0"
+			Grid.Row="0">
+			<TabItem
+				Name="TabLogin"
+				Header="Login">
+				<Grid
+					Background="#FF228B22">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition
+							Width="77*" />
+						<ColumnDefinition
+							Width="311*" />
+					</Grid.ColumnDefinitions>
+					<WebBrowser
+						Name="WebLogin"
+						Visibility="Collapsed"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch"
+						Grid.ColumnSpan="2" />
+					<StackPanel
+						VerticalAlignment="Center"
+						Grid.ColumnSpan="2"
+						Margin="0,82,0,81">
+						<StackPanel
+							Orientation="Horizontal"
+							HorizontalAlignment="Center">
+							<Label
+								Content="SandboxId:"
+								Visibility="Collapsed" />
+							<TextBox
+								Name="TextBoxSandbox"
+								HorizontalAlignment="Center"
+								Height="23"
+								TextWrapping="NoWrap"
+								Text="RETAIL"
+								VerticalAlignment="Top"
+								Width="51"
+								Visibility="Collapsed"
+								PreviewMouseDown="TextBoxSandbox_MouseDown" />
+						</StackPanel>
+						<StackPanel>
+							<Button
+								Name="ButtonLogin"
+								Content="Login"
+								Width="200px"
+								Margin="0,5,0,0"
+								Height="36"
+								Click="ButtonLogin_Click" />
+							<Button
+								Name="ButtonLogout"
+								Content="Logout"
+								Width="200px"
+								Margin="0,5,0,0"
+								Height="36"
+								Click="ButtonLogout_Click" />
+							<Button
+								Name="ButtonXToken"
+								Content="Change sandbox"
+								Width="200px"
+								Margin="0,5,0,0"
+								Visibility="Collapsed"
+								Click="SandboxLogin_Click" />
+						</StackPanel>
+					</StackPanel>
+				</Grid>
+			</TabItem>
+			<TabItem
+				Name="TabsesProfile"
+				Header="Profile"
+				Visibility="Collapsed"
+				Loaded="TabProfileLoaded">
+				<Grid
+					Background="#FF228B22">
+					<Grid.RowDefinitions>
+						<RowDefinition
+							Height="100" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<Grid
+						Row="0"
+						HorizontalAlignment="Stretch"
+						Margin="10,7,10,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition
+								Width="100" />
+							<ColumnDefinition
+								Width="268*" />
+							<ColumnDefinition
+								Width="171*" />
+						</Grid.ColumnDefinitions>
+						<Image
+							Name="ImgGamerPic"
+							HorizontalAlignment="Left"
+							Height="90"
+							Width="90"
+							Grid.Column="0">
+							<UIElement.Clip>
+								<EllipseGeometry
+									RadiusX="45"
+									RadiusY="45"
+									Center="45,45" />
+							</UIElement.Clip>
+						</Image>
+						<StackPanel
+							Grid.Column="1"
+							VerticalAlignment="Center">
+							<Label
+								Name="LabelGt"
+								Content="Label"
+								HorizontalAlignment="Left"
+								FontSize="20"
+								FontWeight="Bold"
+								VerticalAlignment="Bottom" />
+							<Label
+								Name="LabelXuid"
+								Content="Xuid"
+								HorizontalAlignment="Left"
+								FontSize="12"
+								VerticalAlignment="Top"
+								Margin="0,-6,0,0" />
+						</StackPanel>
+						<Button
+							Content="Refresh"
+							HorizontalAlignment="Right"
+							Width="75"
+							Height="20"
+							VerticalAlignment="Center"
+							Grid.Column="2"
+							Click="ButtonProfileRefresh_Click" />
+					</Grid>
+					<Grid
+						Row="1">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition
+								Width=".5*" />
+							<ColumnDefinition
+								Width=".5*" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition
+								Height="1*" />
+						</Grid.RowDefinitions>
+						<DockPanel
+							Grid.Column="0"
+							Margin="10,0,10,0"
+							VerticalAlignment="Stretch">
+							<Label
+								Content="Profile"
+								HorizontalAlignment="Left"
+								DockPanel.Dock="Top" />
+							<ListView
+								Name="ProfileSettingsList"
+								HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch"
+								Margin="0,0,0,10">
+								<FrameworkElement.ContextMenu>
+									<ContextMenu>
+										<MenuItem
+											Header="Copy"
+											Click="ProfileSettingsList_Copy_Click" />
+									</ContextMenu>
+								</FrameworkElement.ContextMenu>
+								<ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<Grid
+											Margin="0">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+											<TextBlock
+												Grid.Column="0"
+												FontWeight="Bold"
+												Margin="10,0"
+												Text="{Binding name}" />
+											<TextBlock
+												Grid.Column="1"
+												Margin="0"
+												Text="{Binding value}" />
+										</Grid>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ListView>
+						</DockPanel>
+						<DockPanel
+							Grid.Column="1">
+							<Label
+								Content="Active Privileges"
+								HorizontalAlignment="Left"
+								DockPanel.Dock="Top" />
+							<ListBox
+								Name="ListPrivs"
+								FontSize="11"
+								HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch"
+								Margin="0,0,10,10" />
+						</DockPanel>
+					</Grid>
+				</Grid>
+			</TabItem>
+			<TabItem
+				Name="TabFollow"
+				Header="Follow"
+				Visibility="Collapsed"
+				Loaded="TabFollow_Loaded">
+				<Grid
+					Background="#FFE5E5E5">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition
+							Width="161*" />
+						<ColumnDefinition
+							Width="103*" />
+						<ColumnDefinition
+							Width="298*" />
+					</Grid.ColumnDefinitions>
+					<Label
+						Content="Follow more users"
+						HorizontalAlignment="Left"
+						Margin="10,10,0,0"
+						VerticalAlignment="Top"
+						Height="26"
+						Width="111" />
+					<DataGrid
+						Name="DGFollowXuid"
+						Margin="10,41,10,67"
+						CanUserAddRows="True"
+						GridLinesVisibility="None"
+						AutoGenerateColumns="False"
+						AllowDrop="True"
+						VerticalAlignment="Stretch"
+						Grid.ColumnSpan="3">
+						<DataGrid.Columns>
+							<DataGridTextColumn
+								Header="Xuid"
+								Width="*"
+								Binding="{Binding xuid}" />
+						</DataGrid.Columns>
+					</DataGrid>
+					<Button
+						Content="Import list.."
+						HorizontalAlignment="Left"
+						Margin="10,0,0,42"
+						Width="77"
+						Height="20"
+						VerticalAlignment="Bottom"
+						Click="ButtonFollowImportXuids" />
+					<Button
+						Name="ButtonFollowBatchGo"
+						FontWeight="Bold"
+						Content="Commit Changes"
+						HorizontalAlignment="Left"
+						Width="183"
+						Margin="10,0,0,7"
+						Height="30"
+						VerticalAlignment="Bottom"
+						Grid.ColumnSpan="2"
+						Click="ButtonFollowGo" />
+					<Button
+						Content="CSV from XDP.."
+						HorizontalAlignment="Left"
+						Margin="92,0,0,42"
+						Width="101"
+						Height="20"
+						VerticalAlignment="Bottom"
+						Grid.ColumnSpan="2"
+						Click="ButtonFollowImportCSVXuids" />
+				</Grid>
+			</TabItem>
+			<TabItem
+				Header="People"
+				Visibility="Collapsed">
+				<Grid
+					Background="#FFE5E5E5">
+					<DockPanel>
+						<Label
+							Content="Manage your people list"
+							HorizontalAlignment="Left"
+							Margin="10,10,0,0"
+							VerticalAlignment="Top"
+							Height="26"
+							Width="197"
+							DockPanel.Dock="Left" />
+						<Button
+							Name="RefreshButton"
+							Content="Refresh"
+							HorizontalAlignment="Right"
+							Margin="0,13,10,0"
+							VerticalAlignment="Top"
+							Width="75"
+							DockPanel.Dock="Right"
+							Click="ButtonProfileRefresh_Click" />
+					</DockPanel>
+					<DataGrid
+						Name="ListNowFollowing"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch"
+						Margin="10,41,10,43"
+						AutoGenerateColumns="False"
+						IsReadOnly="True"
+						Grid.ColumnSpan="2">
+						<DataGrid.Columns>
+							<DataGridTextColumn
+								Header="Xuid"
+								Width="50*"
+								Binding="{Binding xuid}" />
+							<DataGridCheckBoxColumn
+								Header="Favorite"
+								Binding="{Binding isFavorite}" />
+							<DataGridCheckBoxColumn
+								Header="Blocked"
+								Binding="{Binding isBlocked}" />
+							<DataGridCheckBoxColumn
+								Header="Follows me"
+								Binding="{Binding isFollowingBack}" />
+						</DataGrid.Columns>
+					</DataGrid>
+					<StackPanel
+						Orientation="Horizontal"
+						VerticalAlignment="Bottom">
+						<Button
+							Name="ButtonUnfollowSelected"
+							Content="Unfollow"
+							HorizontalAlignment="Left"
+							Margin="10,0,0,7"
+							Height="30"
+							Click="ButtonUnfollowSelected_Click" />
+						<Button
+							Name="ButtonFavSelected"
+							Content="Favorite"
+							HorizontalAlignment="Left"
+							Margin="5,0,0,7"
+							Height="30"
+							Click="ButtonFavSelected_Click" />
+						<Button
+							Name="ButtonUnFavSelected"
+							Content="UnFavorite"
+							HorizontalAlignment="Left"
+							Margin="5,0,0,7"
+							Height="30"
+							Click="ButtonUnFavSelected_Click" />
+						<Button
+							Name="ButtonBlockSelected"
+							Content="Block"
+							HorizontalAlignment="Left"
+							Margin="5,0,0,7"
+							Height="30"
+							Click="ButtonBlockSelected_Click" />
+						<Button
+							Name="ButtonUnblockSelected"
+							Content="Unblock"
+							HorizontalAlignment="Left"
+							Margin="5,0,0,7"
+							Height="30"
+							Click="ButtonUnblockSelected_Click" />
+					</StackPanel>
+				</Grid>
+			</TabItem>
+			<TabItem
+				Name="TabReputation"
+				Header="Reputation"
+				Visibility="Collapsed"
+				Loaded="TabReputation_Loaded">
+				<Grid
+					Background="#FFE5E5E5">
+					<StackPanel
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center">
+						<StackPanel
+							Orientation="Horizontal">
+							<Label
+								Width="140"
+								Content="Fairplay rep"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Top"
+								Foreground="#FF808080"
+								FontSize="10" />
+							<TextBlock
+								Name="TextCurFairplayRep"
+								Text="-"
+								TextWrapping="NoWrap"
+								VerticalAlignment="Center"
+								Width="40"
+								Foreground="#FF808080"
+								FontSize="10" />
+						</StackPanel>
+						<StackPanel
+							Orientation="Horizontal">
+							<Label
+								Width="140"
+								Content="Comms rep"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Top"
+								Foreground="#FF808080"
+								FontSize="10" />
+							<TextBlock
+								Name="TextCurCommsRep"
+								Text="-"
+								TextWrapping="NoWrap"
+								VerticalAlignment="Center"
+								Width="40"
+								Foreground="#FF808080"
+								FontSize="10" />
+						</StackPanel>
+						<StackPanel
+							Orientation="Horizontal">
+							<Label
+								Width="140"
+								Content="UGC rep"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Top"
+								Foreground="#FF808080"
+								FontSize="10" />
+							<TextBlock
+								Name="TextCurUGCRep"
+								Text="-"
+								TextWrapping="NoWrap"
+								VerticalAlignment="Center"
+								Width="40"
+								Foreground="#FF808080"
+								FontSize="10" />
+						</StackPanel>
+						<StackPanel
+							Orientation="Horizontal">
+							<Label
+								Width="140"
+								Content="Overall rep"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Top"
+								Foreground="#FF808080"
+								FontSize="10" />
+							<TextBlock
+								Name="TextCurOverallRep"
+								Text="-"
+								TextWrapping="NoWrap"
+								VerticalAlignment="Center"
+								Width="40"
+								Foreground="#FF808080"
+								FontSize="10" />
+						</StackPanel>
+						<StackPanel
+							Orientation="Horizontal">
+							<Label
+								Width="140"
+								Content="OverallStatIsBad"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Top"
+								Foreground="#FF808080"
+								FontSize="10" />
+							<TextBlock
+								Name="TextCurOverallStatIsBad"
+								Text="-"
+								TextWrapping="NoWrap"
+								VerticalAlignment="Center"
+								Width="40"
+								Foreground="#FF808080"
+								FontSize="10" />
+						</StackPanel>
+						<StackPanel
+							Orientation="Horizontal"
+							Height="30"
+							Margin="0,10,0,0">
+							<Label
+								Width="140"
+								Content="Fairplay Reputation"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Bottom" />
+							<TextBox
+								Name="TextFairplayRep"
+								TextWrapping="NoWrap"
+								VerticalAlignment="Center"
+								Width="40" />
+						</StackPanel>
+						<StackPanel
+							Orientation="Horizontal">
+							<Label
+								Width="140"
+								Content="Comms Reputation"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Top" />
+							<TextBox
+								Name="TextCommsRep"
+								TextWrapping="NoWrap"
+								VerticalAlignment="Center"
+								Width="40" />
+						</StackPanel>
+						<StackPanel
+							Orientation="Horizontal">
+							<Label
+								Width="140"
+								Content="UGC Reputation"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Top" />
+							<TextBox
+								Name="TextUGCRep"
+								TextWrapping="NoWrap"
+								VerticalAlignment="Center"
+								Width="40" />
+						</StackPanel>
+						<StackPanel
+							Orientation="Vertical"
+							HorizontalAlignment="Center"
+							Margin="0,10,0,0">
+							<Button
+								Content="'Avoid Me' Defaults"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Top"
+								Margin="5"
+								Width="160"
+								Click="ButtonRepBad_Click" />
+							<Button
+								Content="'Good Player' Defaults"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Top"
+								Margin="5"
+								Width="160"
+								Click="ButtonRepGood_Click" />
+							<Button
+								Name="ButtonRepSet"
+								FontWeight="Bold"
+								Content="Commit Changes"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Top"
+								Margin="29,15"
+								Width="120"
+								Height="25"
+								Click="ButtonRepSetClick" />
+						</StackPanel>
+					</StackPanel>
+				</Grid>
+			</TabItem>
+			<TabItem
+				Header="Gamertag"
+				Visibility="Visible">
+				<Grid
+					Background="#FF228B22">
+					<StackPanel
+						VerticalAlignment="Center">
+						<TextBox
+							Name="TextboxChgGT"
+							HorizontalAlignment="Center"
+							Height="26"
+							VerticalAlignment="Center"
+							Width="200"
+							VerticalContentAlignment="Center"
+							MaxLength="15" />
+						<Button
+							Name="ButtonChgGT"
+							IsDefault="True"
+							HorizontalAlignment="Center"
+							Height="36"
+							Content="Start&#xD;&#xA;"
+							Width="200"
+							VerticalAlignment="Top"
+							Margin="0,20"
+							Click="ButtonChgGT_Click" />
+					</StackPanel>
+				</Grid>
+			</TabItem>
+		</TabControl>
+		<ProgressBar
+			Name="ProgBar"
+			Grid.Row="1"
+			HorizontalAlignment="Stretch" />
+		<ScrollViewer
+			Name="ScrollLog"
+			HorizontalAlignment="Stretch"
+			Grid.Row="2"
+			VerticalAlignment="Stretch"
+			Margin="0,0"
+			Background="#FF000000">
+			<TextBlock
+				Name="TextLog"
+				Margin="5"
+				Foreground="#FF1DD858"
+				FontSize="10"
+				TextWrapping="Wrap"
+				Cursor="IBeam" />
+		</ScrollViewer>
+	</Grid>
+</Window>

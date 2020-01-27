@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F83544FB-1F98-477C-9787-8455E462DB0B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>XboxLiveAccountTool</RootNamespace>
+    <AssemblyName>XboxLiveAccountTool</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60DC8134-EBA5-43B8-BCC9-BB4BC16C2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <StartupObject>XboxLiveAccountTool.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CsvHelper">
+      <HintPath>..\..\..\Desktop\Ysn\Flash\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Ysn\Flash\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DisplaySetting.cs" />
+    <Compile Include="Components\ProfileManager.cs" />
+    <Compile Include="Components\ProfileSettingName.cs" />
+    <Compile Include="Components\ReputationManager.cs" />
+    <Compile Include="Components\TextFileReader.cs" />
+    <Compile Include="Contracts\AccountContract.cs" />
+    <Compile Include="Contracts\AccountsGtChangeRequestContract.cs" />
+    <Compile Include="Contracts\homeAddressInfo.cs" />
+    <Compile Include="Contracts\PrivacyRequestContract.cs" />
+    <Compile Include="Contracts\PrivacyResponseContract.cs" />
+    <Compile Include="Contracts\PrivacyUserContract.cs" />
+    <Compile Include="Contracts\ProfileRequestContract.cs" />
+    <Compile Include="Contracts\ProfileResponseContract.cs" />
+    <Compile Include="Contracts\ProfileSettingContract.cs" />
+    <Compile Include="Contracts\ProfileUserContract.cs" />
+    <Compile Include="Contracts\ReputationChangeRequestContract.cs" />
+    <Compile Include="Contracts\SocialGraphPersonContract.cs" />
+    <Compile Include="Contracts\SocialGraphRequestContract.cs" />
+    <Compile Include="Contracts\SocialGraphResponseContract.cs" />
+    <Compile Include="Contracts\StatContract.cs" />
+    <Compile Include="Contracts\StatsResponseContract.cs" />
+    <Compile Include="Contracts\subscriptionEntitlementInfo.cs" />
+    <Compile Include="Contracts\XasuDisplayClaims.cs" />
+    <Compile Include="Contracts\XASURequestContract.cs" />
+    <Compile Include="Contracts\XASUTokenProperty.cs" />
+    <Compile Include="Contracts\XASUTokenResponse.cs" />
+    <Compile Include="Contracts\XSTSDisplayClaims.cs" />
+    <Compile Include="Contracts\XSTSRequestContract.cs" />
+    <Compile Include="Contracts\XSTSToken.cs" />
+    <Compile Include="Contracts\XstsTokenProperty.cs" />
+    <Compile Include="Contracts\XuiClaims.cs" />
+    <Compile Include="Costura\AssemblyLoader.cs" />
+    <Compile Include="DataAccess\AccountsDataAccess.cs" />
+    <Compile Include="DataAccess\PrivacyDataAccess.cs" />
+    <Compile Include="DataAccess\PrivacyOperation.cs" />
+    <Compile Include="DataAccess\ProfileDataAccess.cs" />
+    <Compile Include="DataAccess\ReputationDataAccess.cs" />
+    <Compile Include="DataAccess\SocialGraphDataAccess.cs" />
+    <Compile Include="DataAccess\SocialGraphOperation.cs" />
+    <Compile Include="DataAccess\Stat.cs" />
+    <Compile Include="DataAccess\StatName.cs" />
+    <Compile Include="DataAccess\StatsDataAccess.cs" />
+    <Compile Include="DataAccess\XSTSDataAccess.cs" />
+    <Compile Include="ELogOnState.cs" />
+    <Compile Include="Helpers\UserListHelpers.cs" />
+    <Compile Include="LiveAuthManager.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="LogOnStateEventArgs.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrivilegeNames.cs" />
+    <Compile Include="ProcessedByFody.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Response.cs" />
+    <Compile Include="TokenType.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="XBLCall.cs" />
+    <Compile Include="XTokenManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Costura\csvhelper\dll.compressed" />
+    <EmbeddedResource Include="Costura\csvhelper\pdb.compressed" />
+    <EmbeddedResource Include="Costura\newtonsoft\json\dll.compressed" />
+    <EmbeddedResource Include="Properties\Resources.resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

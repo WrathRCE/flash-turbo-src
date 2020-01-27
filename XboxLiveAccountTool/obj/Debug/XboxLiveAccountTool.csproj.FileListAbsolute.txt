@@ -1,0 +1,5 @@
+C:\Users\Wrath\Documents\Sources\XboxLiveAccountTool\obj\Debug\XboxLiveAccountTool.csprojResolveAssemblyReference.cache
+C:\Users\Wrath\Documents\Sources\XboxLiveAccountTool\obj\Debug\MainWindow.g.cs
+C:\Users\Wrath\Documents\Sources\XboxLiveAccountTool\obj\Debug\App.g.cs
+C:\Users\Wrath\Documents\Sources\XboxLiveAccountTool\obj\Debug\XboxLiveAccountTool_MarkupCompile.cache
+C:\Users\Wrath\Documents\Sources\XboxLiveAccountTool\obj\Debug\XboxLiveAccountTool_MarkupCompile.lref
